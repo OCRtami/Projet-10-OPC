@@ -12,8 +12,21 @@ import Form from "../../containers/Form";
 import Modal from "../../containers/Modal";
 import { useData } from "../../contexts/DataContext";
 
+
 const Page = () => {
-  const {last} = useData()
+
+  // On reprend les lignes de code de slider
+  const { data } = useData();
+  // On déclare un tableau dans lequel nous allons mettre tous les events.
+  const dataToArray =[];
+  data?.events.map((a)=> dataToArray.push(a));
+  // On trie le tableau par ordre décroissant selon les dates.
+  dataToArray.sort((a,b) => a.date > b.date ? 1 : -1);
+  // On donne à "last" la dernière valeur du tableau trié.
+  const last = dataToArray.slice(dataToArray.length-1);
+
+   console.log(last[0])
+
   return <>
     <header>
       <Menu />
@@ -117,11 +130,11 @@ const Page = () => {
       <div className="col presta">
         <h3>Notre derniére prestation</h3>
         <EventCard
-          imageSrc={last?.cover}
-          title={last?.title}
-          date={new Date(last?.date)}
+          imageSrc={last[0]?.cover}
+          title={last[0]?.title}
+          date={new Date(last[0]?.date)}
           small
-          label="boom"
+          label={last[0]?.type}
         />
       </div>
       <div className="col contact">
