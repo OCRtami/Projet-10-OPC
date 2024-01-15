@@ -15,8 +15,14 @@ const Select = ({
 }) => {
   const [value, setValue] = useState();
   const [collapsed, setCollapsed] = useState(true);
+
+  /* Grace à react dev tool, j'ai remarqué que la state "type" du composant eventList restait null.
+  Or, le seul moyen de le changer est la fonction "setType" du même composant.
+  Cette fonction est appelé qu'une seule fois ( grace à la fonction changeType du même composant), et c'est lors du click sur le composant "Select".
+  Après quelque test, il semble que le fait qu'il ne se passe rien était qu'il manquait " newValue" en argument de la fonction onChange ci dessous
+  */
   const changeValue = (newValue) => {
-    onChange();
+    onChange(newValue);
     setValue(newValue);
     setCollapsed(newValue);
   };

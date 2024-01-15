@@ -13,11 +13,20 @@ const EventList = () => {
   const { data, error } = useData();
   const [type, setType] = useState();
   const [currentPage, setCurrentPage] = useState(1);
-  const filteredEvents = (
-    (!type
-      ? data?.events
-      : data?.events) || []
-  ).filter((event, index) => {
+
+/*  
+  Test de fonctionnement de la fonction déjà présente.
+  console.log(( (!type ? data?.events : data?.events) || [] ).filter((event)=> event.type === "conférence"))
+  On récupère tous les events de type "conférence"
+
+L'une des tentatives réalisé était la suivante : 
+  const filteredEvents = ( ((!type ? data?.events : data?.events) || [] ).filter((e) => e.type === type)).filter((event, index)...
+Le soucis avec cette solution, c'est que lorsqu'aucun type n'est selectionné rien ne s'affichait car il n'existe pas de type "tous".
+Une autre tentative consistait à utiliser l'argument "event" présent dans la fonction de base.
+Pour arriver à cette solution, j'ai pas à pas déconstruit la fonction à travers different " console.log " et test que j'ai réalisé en commentaire plus haut 
+
+Si !type est falsy (null, undefined alors renvoie tout les events, sinon renvoie la liste des events correspondant au type.)  */
+  const filteredEvents = ( (!type ? data?.events : data?.events.filter((e) => e.type === type)) || [] ).filter((event, index) => {
     if (
       (currentPage - 1) * PER_PAGE <= index &&
       PER_PAGE * currentPage > index

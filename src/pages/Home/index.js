@@ -25,8 +25,6 @@ const Page = () => {
   // On donne à "last" la dernière valeur du tableau trié.
   const last = dataToArray.slice(dataToArray.length-1);
 
-   console.log(last[0])
-
   return <>
     <header>
       <Menu />
