@@ -15,15 +15,8 @@ import { useData } from "../../contexts/DataContext";
 
 const Page = () => {
 
-  // On reprend les lignes de code de slider
-  const { data } = useData();
-  // On déclare un tableau dans lequel nous allons mettre tous les events.
-  const dataToArray =[];
-  data?.events.map((a)=> dataToArray.push(a));
-  // On trie le tableau par ordre décroissant selon les dates.
-  dataToArray.sort((a,b) => a.date > b.date ? 1 : -1);
-  // On donne à "last" la dernière valeur du tableau trié.
-  const last = dataToArray.slice(dataToArray.length-1);
+  // Changement du code. On définit last directement dans le DataContext.
+  const {last} = useData();
 
   return <>
     <header>
@@ -127,13 +120,15 @@ const Page = () => {
     <footer className="row">
       <div className="col presta">
         <h3>Notre derniére prestation</h3>
-        <EventCard
-          imageSrc={last[0]?.cover}
-          title={last[0]?.title}
-          date={new Date(last[0]?.date)}
-          small
-          label={last[0]?.type}
-        />
+        { last && 
+            <EventCard
+            imageSrc={last?.cover}
+            title={last?.title}
+            date={new Date(last?.date)}
+            small
+            label={last?.type}
+          />
+        }
       </div>
       <div className="col contact">
         <h3>Contactez-nous</h3>

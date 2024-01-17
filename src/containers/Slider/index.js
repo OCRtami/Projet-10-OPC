@@ -4,6 +4,8 @@ import { getMonth } from "../../helpers/Date";
 
 import "./style.scss";
 
+// Changement ligne 52, idx en Index pour les bullets pts du slider
+
 const Slider = () => {
   const { data } = useData();
   const [index, setIndex] = useState(0);
@@ -47,7 +49,7 @@ const Slider = () => {
                   key={event.id}
                   type="radio"
                   name="radio-button"
-                  checked={idx === radioIdx}
+                  checked={index === radioIdx}
                 />
               ))}
             </div>
