@@ -1,15 +1,9 @@
-# 724 Events
+# 724 Events - Projet 10 OpenClassrooms
 
-## Description
-L'application est le site d'une agence evenementielle.
-## Pre-requis
-- NodeJS  >= v16.14.1
+-  Projet n°10 du parcours de formation intégrateur web d'OpenClassrooms.
+-  Le but est de corriger les bugs d'un site grace à differents outils.
 
 ## Installation
 - `yarn install`
-
-## Lancement de l'application
 - `yarn start`
-
-## Tests
 - `yarn test`
